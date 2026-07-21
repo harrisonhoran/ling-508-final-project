@@ -5,10 +5,12 @@ from pathlib import Path
 
 TOKEN = os.environ['PODSCRIBE_TOKEN']
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RAW_DIR = PROJECT_ROOT / "data" / "fetched_raw_transcripts"
 GUID = "33ef6bfc-73cc-11f1-aa39-7fd94399ff0a"
 ITUNES_ID = "1805478723"
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+RAW_DIR = PROJECT_ROOT / "data" / "fetched_raw_transcripts"
+RAW_DIR.mkdir(parents=True, exist_ok=True)
 
 response = requests.get(
     "https://backend.podscribe.ai/api/public/episode/transcript",
