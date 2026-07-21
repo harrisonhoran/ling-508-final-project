@@ -7,15 +7,18 @@ from app.enums import *
 # Test Records/Parameters
 # *************************************************************************
 DIALOGUE_PARAMS = {
-    "speaker":      "Host",
-    "text":         "Welcome to the Zach Lowe Show",
-    "timestamp":    ""
-
+    "speaker":      "host",
+    "text":         "welcome to the zach lowe show",
+    "timestamp":    1783683061,
+    "order":        1
 }
 
 TRANSCRIPT_PARAMS = {
-    "podcast_id": test_podcast_params.id,
-
+    "podcast_id"        : 465283065,
+    "filename"          : "the_zach_lowe_show_465283065.txt",
+    "raw_text"          : "brought to you by",
+    "clean_text"        : "state farm",
+    "ProcessingMode"    : "CLEAN"
 }
 
 PODCAST_PARAMS = {
@@ -26,10 +29,10 @@ PODCAST_PARAMS = {
 # --- Dialogue tests ---
 def test_dialogue():
     d = Dialogue(**DIALOGUE_PARAMS)
-    assert podcast.id   == 465283065
-    assert podcast.name == "the_zach_lowe_show_465283065"
-def test_dialogue_creates_with_correct_attributes():
-
+    assert d.speaker    == "host"
+    assert d.text       == "welcome to the zach lowe show"
+    assert d.timestamp  == 1783683061
+    assert d.order      == 1
 
 # - d Validation rules -
 # Needs to be a string
@@ -37,19 +40,24 @@ def test_dialogue_creates_with_correct_attributes():
 
 # --- Transcript tests ---
 def test_transcript():
-    podcast = Transcript(**test_transcript_params)
-    assert podcast.id   == 465283065
-    assert podcast.name == "the_zach_lowe_show_465283065"
+    t = Transcript(**TRANSCRIPT_PARAMS)
+    assert t.podcast_id         == 465283065
+    assert t.filename           == "the_zach_lowe_show_465283065.txt"
+    assert t.raw_text           == "brought to you by"
+    assert t.clean_text         == "state farm"
+    assert t.ProcessingMode     == "CLEAN"
 
-
-# - Transcript Validation Rules -
+# - t Validation Rules -
 # Needs to be a string
 # Can't have missing fields
 
 
 # --- Podcast tests ---
 def test_podcast():
-    podcast = Podcast(**test_podcast_params)
-    assert podcast.id   == 465283065
-    assert podcast.name == "the_zach_lowe_show_465283065"
+    p = Podcast(**PODCAST_PARAMS)
+    assert p.id   == 465283065
+    assert p.name == "the_zach_lowe_show_465283065"
 
+# - p Validation Rules -
+# id must be integer
+# name must be snake case
