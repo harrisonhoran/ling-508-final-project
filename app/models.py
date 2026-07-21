@@ -8,7 +8,6 @@ class Dialogue:
     timestamp: int
     order: int = 1
 
-
 # class Dialogue:
 #
 #     def __init__(self, speaker: str, text: str, timestamp: int, order: int):
@@ -16,7 +15,6 @@ class Dialogue:
 #         self.text = text
 #         self.timestamp = timestamp
 #         self.order = order
-
 
 @dataclass
 class Transcript:
@@ -27,7 +25,6 @@ class Transcript:
     mode: ProcessingMode
     dialogues: list[Dialogue] = field(default_factory=list)
 
-
 # class Transcript:
 #
 #     def __init__(self, podcast_id: int, filename: str, raw_text: str, clean_text: str, mode = ProcessingMode):
@@ -36,7 +33,6 @@ class Transcript:
 #         self.raw_text = raw_text
 #         self.clean_text = clean_text
 #         self.ProcessingMode = ProcessingMode
-
 
 @dataclass
 class Podcast:
