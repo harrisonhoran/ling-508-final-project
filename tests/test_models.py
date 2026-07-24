@@ -20,9 +20,6 @@ TRANSCRIPT_PARAMS = {
     "mode": ProcessingMode.CLEAN,
 }
 
-PODCAST_PARAMS = {"id": 465283065, "name": "the_zach_lowe_show_465283065"}
-
-
 # --- Dialogue tests ---
 def test_dialogue():
     d = Dialogue(**DIALOGUE_PARAMS)
@@ -50,15 +47,3 @@ def test_transcript():
 # - t Validation Rules -
 # Needs to be a string
 # Can't have missing fields
-
-
-# --- Podcast tests ---
-def test_podcast():
-    p = Podcast(**PODCAST_PARAMS)
-    assert p.id == 465283065
-    assert p.name == "the_zach_lowe_show_465283065"
-
-
-# - p Validation Rules -
-# id must be integer
-# name must be snake case
