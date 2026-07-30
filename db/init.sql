@@ -17,7 +17,7 @@ CREATE TABLE transcript (
 );
 
 CREATE TABLE dialogue (
-    id INT AUTO_INCREMENT PRIMARY_KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     transcript_id INT NOT NULL,
     speaker VARCHAR(255) NOT NULL,
     text TEXT NOT NULL,

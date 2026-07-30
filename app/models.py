@@ -16,3 +16,8 @@ class Transcript:
     clean_text: str
     mode: ProcessingMode
     dialogues: list[Dialogue] = field(default_factory=list)
+
+@dataclass
+class Podcast:
+    name: str
+    id: int = None
