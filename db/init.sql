@@ -12,7 +12,7 @@ CREATE TABLE transcript (
     filename VARCHAR(255) NOT NULL,
     raw_text LONGTEXT,
     clean_text LONGTEXT,
-    mode VARCHAR(50) NOT NULL,
+    mode ENUM('store_only', 'clean') NOT NULL,
     FOREIGN KEY (podcast_id) REFERENCES podcast(id)
 );
 
@@ -22,6 +22,6 @@ CREATE TABLE dialogue (
     speaker VARCHAR(255) NOT NULL,
     text TEXT NOT NULL,
     timestamp INT,
-    'order' INT DEFAULT 1,
+    `order` INT DEFAULT 1,
     FOREIGN KEY (transcript_id) REFERENCES transcript(id)
 );

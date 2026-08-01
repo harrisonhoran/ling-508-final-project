@@ -12,7 +12,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Build Docker image
-        run: docker build -t project-tests .
+      - name: Build and start containers
+        run: docker-compose up -d --build
+      - name: Wait for MySQL to load
+        run: sleep 10
       - name: Run tests in container
-        run: docker run project-tests
+        run: docker-compose exec - T app python -m pytest tests
+      - name: Tear down containers
+        if: always()
+        run: docker-compose down
