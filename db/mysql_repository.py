@@ -10,10 +10,10 @@ class MySQLTranscriptRepository(TranscriptRepository):
         config = {
             'user': 'root',
             'password': 'root',
-            # 'host': 'db',  # When you run this on your machine change it to 'localhost'
-            'host': 'localhost',
-            # 'port': '3306',  # When you run this on your machine change it to '32000'
-            'port': '32000',
+            'host': 'db',  # When you run this on your machine change it to 'localhost'
+            # 'host': 'localhost',
+            'port': '3306',  # When you run this on your machine change it to '32000'
+            # 'port': '32000',
             'database': 'transcript_parser_app'
         }
         self.connection = mysql.connector.connect(**config)
