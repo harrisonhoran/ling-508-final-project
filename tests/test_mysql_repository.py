@@ -33,3 +33,31 @@ def test_save_and_get_transcript():
     assert retreived.raw_text == "raw text here"
     assert retreived.clean_text == "clean text here"
     assert retreived.mode == ProcessingMode.CLEAN
+
+def test_podcast_is_reused_not_duplicated():
+    t1 = build_transcript("dedup1")
+    t2 = build_transcript("dedup2")
+
+    id1 = repo.save_transcript(t1, podcast_name="Same Podcast")
+    id2 = repo.save_transcript(t2, podcast_name="Same Podcast")
+
+    ret1 = repo.get_transcript(id1)
+    ret2 = repo.get_transcript(id2)
+
+    assert ret1.podcast_id == ret2.podcast_id
+
+def test_dialogues_round_trip_in_order():
+    transcript = build_transcript("dialogues")
+    transcript_id = repo.save_transcript(transcript, podcast_name="Test Podcast B")
+
+    ret = repo.get_transcript(transcript_id)
+
+    assert len(ret.dialogues) == 2
+    assert ret.dialogues[0].speaker == "HOST"
+    assert ret.dialogues[0].order == 1
+    assert ret.dialogues[1].speaker == "GUEST"
+    assert ret.dialogues[1].order == 2
+
+def test_get_transcript_missing_id_raises():
+    with pytest.raises(ValueError):
+        repo.get_transcript(999999999)
