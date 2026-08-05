@@ -1,12 +1,11 @@
 """
-Domain logic for cleaning a raw podcast transcript.
+Logic for cleaning a raw podcast transcript.
 
 This module is deliberately I/O-free: it takes data in, returns data out,
 so it can be unit-tested without touching the filesystem, a network, or a
 database. The service layer (app/services.py) is what wires this logic up
 to the repository.
 """
-
 import json
 from collections import Counter
 
