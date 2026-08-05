@@ -8,13 +8,10 @@ to the repository.
 """
 
 import json
-from pathlib import Path
 from collections import Counter
 
 from app.models import Dialogue
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RAW_DIR = PROJECT_ROOT / "data" / "fetched_raw_transcripts"
 DEFAULT_SPEAKER_THRESHOLD = 0.03
 
 def parse_words(raw_transcription_text: str) -> list[dict]:
@@ -36,7 +33,7 @@ def calculate_speaker_proportions(words: list[dict]) -> dict[int, float]:
         for speaker_id, count in word_counts.items()
     }
 
-def label_principal_speakers(
+def label_primary_speakers(
         words: list[dict], threshold: float = DEFAULT_SPEAKER_THRESHOLD
 ) -> dict[int, str]:
     """
@@ -84,7 +81,7 @@ def group_into_turns(words: list[dict]) -> list[dict]:
                 turns.append({
                     "speaker": current_speaker,
                     "text": " ".join(current_words),
-                    "start": current_start,
+                    "start_time": current_start,
                 })
             current_speaker = w["speaker"]
             current_words = [w["word"]]
@@ -95,7 +92,7 @@ def group_into_turns(words: list[dict]) -> list[dict]:
         turns.append({
             "speaker": current_speaker,
             "text": " ".join(current_words),
-            "start": current_start,
+            "start_time": current_start,
         })
 
     return turns
@@ -106,7 +103,7 @@ def build_dialogues(
 ) -> tuple[list[Dialogue], list[dict]]:
     """
     Converts raw turns into labeled Dialogue objects, using speaker_map
-    (from identify_principal_speakers) to decide the label.
+    (from label_primary_speakers) to decide the label.
 
     Returns a tuple:
       - dialogues: turns from real speakers (SPEAKER_1, SPEAKER_2, ...),
@@ -122,7 +119,7 @@ def build_dialogues(
         label = speaker_map.get(t["speaker"], "OTHER")
         if label == "OTHER":
             excluded_turns.append({
-                "speaker_id": t["speaker_id"],
+                "speaker_id": t["speaker"],
                 "text": t["text"],
                 "start_time": t["start_time"],
             })
@@ -148,6 +145,3 @@ def build_clean_text(dialogues: list[Dialogue], title: str = "") -> str:
         lines.append("")
 
     return "\n".join(lines).strip() + "\n"
-
-if __name__ == "__main__":
-    pass
