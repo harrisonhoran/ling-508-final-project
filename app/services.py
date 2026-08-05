@@ -8,6 +8,14 @@ class FrontEnd:
         data = self.data_source.get_data()
         print("Display data:", data)
 
+# Use Case 1
+
+
+# Use Case 2
+
+
+# Use Case 3
+
 class DataSource(ABC):
     @abstractmethod
     def get_data(self):
