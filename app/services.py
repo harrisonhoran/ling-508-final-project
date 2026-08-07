@@ -57,7 +57,7 @@ class TranscriptService:
                 raw_text=raw_transcription_text,
                 clean_text=clean_text,
                 mode=mode,
-                dialogues=[],
+                dialogues=dialogues,
             )
             transcript.excluded_speaker_turns = excluded_turns
         else:
