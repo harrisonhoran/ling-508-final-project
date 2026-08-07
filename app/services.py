@@ -59,7 +59,6 @@ class TranscriptService:
                 mode=mode,
                 dialogues=dialogues,
             )
-            transcript.excluded_speaker_turns = excluded_turns
         else:
             raise ValueError(f"Unsupported processing mode: {mode}")
 
