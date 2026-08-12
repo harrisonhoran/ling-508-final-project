@@ -51,13 +51,16 @@ def create_transcript():
     result['mode'] = transcript.mode.value
     return jsonify(result), HTTPStatus.CREATED
 
-@app.route("/transcripts/<int:podcast_id>", methods=["GET"])
-def get_transcript(podcast_id: int):
-    transcript = services.get_transcript(podcast_id=podcast_id)
-    if transcript:
-        return jsonify(transcript)
-    return jsonify({"error": f"transcript with id {podcast_id} not found"}), HTTPStatus.NOT_FOUND
+@app.route("/transcripts/<int:transcript_id>", methods=["GET"])
+def get_transcript(transcript_id: int):
+    try:
+        transcript = services.get_transcript(transcript_id=transcript_id)
+    except ValueError:
+        return jsonify({"error": f"transcript with id {transcript_id} not found"}), HTTPStatus.NOT_FOUND
 
+    result = asdict(transcript)
+    result['mode'] = transcript.mode.value
+    return jsonify(result), HTTPStatus.CREATED
 
 
 if __name__ == "__main__":

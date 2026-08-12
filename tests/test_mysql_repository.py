@@ -61,3 +61,13 @@ def test_dialogues_round_trip_in_order():
 def test_get_transcript_missing_id_raises():
     with pytest.raises(ValueError):
         repo.get_transcript(999999999)
+
+
+@pytest.fixture(autouse=True)
+def cleanup_test_data():
+    yield  # test runs here
+    # after the test finishes (pass or fail), clean up everything it created
+    repo.cursor.execute("DELETE FROM dialogue")
+    repo.cursor.execute("DELETE FROM transcript")
+    repo.cursor.execute("DELETE FROM podcast")
+    repo.connection.commit()
