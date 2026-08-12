@@ -67,3 +67,10 @@ class TranscriptService:
         if mode == ProcessingMode.CLEAN:
             saved_transcript.excluded_speaker_turns = excluded_turns
         return saved_transcript
+
+    def get_transcript(self, transcript_id: int) -> Transcript:
+        """
+        Searches for existing transcript in the database using 'podcast_id'
+        as the search key.
+        """
+        return self.repository.get_transcript(transcript_id=transcript_id)

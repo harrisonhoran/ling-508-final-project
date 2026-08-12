@@ -1,3 +1,4 @@
 pytest
 dataclasses
 mysql-connector-python
+flask
