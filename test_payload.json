@@ -1,7 +1,0 @@
-{
-  "podcast_name": "Test_Pod1",
-  "filename": "testpod1.txt",
-  "raw_transcription_text": "[{\"speaker\":0,\"word\":\"Hi\",\"startTime\":0},{\"speaker\":0,\"word\":\"there\",\"startTime\":0.5}]",
-  "mode": "clean",
-  "title": "TestPOD1"
-}
