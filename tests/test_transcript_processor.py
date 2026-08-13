@@ -23,7 +23,7 @@ def real_words(real_episode):
 
 def test_calculate_speaker_proportions(real_words):
     speaker_props = calculate_speaker_proportions(real_words)
-    assert len(speaker_props) == 9
+    assert len(speaker_props) == 8
     assert sum(speaker_props.values()) == pytest.approx(1.0)
 
 def test_label_primary_speakers_keeps_only_those_above_threshold(real_words):
@@ -32,7 +32,7 @@ def test_label_primary_speakers_keeps_only_those_above_threshold(real_words):
     primary_labels = [label for label in speaker_map.values() if label != "OTHER"]
     assert len(primary_labels) == 2
     assert set(primary_labels) == {"SPEAKER_1", "SPEAKER_2"}
-    assert speaker_map[9] == "OTHER"
+    assert speaker_map[8] == "OTHER"
 
 def test_label_primary_speakers_threshold_is_configurable(real_words):
     speaker_map = label_primary_speakers(real_words, 0.8)
