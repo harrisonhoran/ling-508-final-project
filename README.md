@@ -6,6 +6,14 @@ speaker-labeled dialogue.
 Podcast data source: [Podscribe](https://podscribe.com/)  
 Podscribe API Documentation: https://docs.api.podscribe.com/#/paths/api-public-episode-transcript/get
 
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Running the app](#running-the-app)
+- [Using the web form](#using-the-web-form)
+- [API Endpoints](#api-endpoints)
+- [Data Persistence](#data-persistence)
+- [Running Tests](#running-tests)
+
 ## Prerequisites
 - Docker Desktop installed and running
 
@@ -18,7 +26,7 @@ open http://localhost:5000/ in a browser.
 
 ## Using the web form
 1. Fill in Podcast Name, Filename, and paste a raw transcript (JSON array
-   of word objects) into the Raw Transcript field.
+   of word objects) into the Raw Transcript field. There is sample data below
 2. Select "Clean" mode.
 3. Click Submit — the cleaned transcript and dialogue will appear below.
 
@@ -67,6 +75,25 @@ open http://localhost:5000/ in a browser.
   {"speaker":1,"word":"both","startTime":10.2},
   {"speaker":1,"word":"teams","startTime":10.5}
 ]
+```
+
+## Project Structure
+```
+├── app.py                  # Flask API server
+├── app/
+│   ├── models.py           # Transcript, Dialogue, Podcast dataclasses
+│   ├── services.py         # TranscriptService — coordinates business logic
+│   ├── transcript_processor.py  # Cleaning/speaker-labeling logic
+│   └── enums.py             # ProcessingMode
+├── db/
+│   ├── repository.py       # Abstract repository interface
+│   ├── mysql_repository.py # MySQL implementation
+│   └── init.sql            # Database schema
+├── web/
+│   └── index.html          # Form UI
+├── tests/                  # pytest test suite
+├── docker-compose.yml
+└── Dockerfile
 ```
 
 ## API Endpoints
