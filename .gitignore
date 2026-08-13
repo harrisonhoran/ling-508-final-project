@@ -219,3 +219,7 @@ __marimo__/
 
 # pytest ignore file
 pytest.ini
+conftest.py
+
+# test payload data
+test_payload.json

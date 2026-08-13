@@ -1,5 +1,5 @@
 from dataclasses import asdict
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from http import HTTPStatus
 
 from app.services import TranscriptService
@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder="web")
 services = TranscriptService(MySQLTranscriptRepository())
 @app.route("/")
 def hello():
-    return "Hello world!"
+    return render_template("index.html")
 
 @app.route("/transcripts", methods=["POST"])
 def create_transcript():
@@ -60,7 +60,7 @@ def get_transcript(transcript_id: int):
 
     result = asdict(transcript)
     result['mode'] = transcript.mode.value
-    return jsonify(result), HTTPStatus.CREATED
+    return jsonify(result), HTTPStatus.OK
 
 
 if __name__ == "__main__":
