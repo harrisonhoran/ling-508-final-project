@@ -124,6 +124,8 @@ Transcript data is stored in a Docker volume and persists across restarts.
 To fully reset the database: docker compose down -v
 
 ## Running tests
-```
-pytest
+Tests connect to the containerized MySQL database, so the app must be running first:
+```bash
+docker compose up --build -d
+docker compose exec app pytest -v
 ```
