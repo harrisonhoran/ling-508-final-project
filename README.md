@@ -35,7 +35,7 @@ open http://localhost:5000/ in a browser.
 - Podcast Name: `Will the Kawhi Trade Go Through?`
 - Filename: `thezachloweshow_20260804.txt`
 - Raw Transcript JSON (short sample below; a full example transcript is in
-  [`test_payload.json`](./test_payload.json)):
+  [`test_transcript.json`](./data/test_data/test_transcript.json)):
 
 ```json
 [
