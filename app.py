@@ -6,7 +6,7 @@ from app.services import TranscriptService
 from db.mysql_repository import MySQLTranscriptRepository
 from app.enums import ProcessingMode
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="web")
 
 services = TranscriptService(MySQLTranscriptRepository())
 @app.route("/")
