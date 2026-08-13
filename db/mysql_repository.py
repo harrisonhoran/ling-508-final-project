@@ -51,6 +51,7 @@ class MySQLTranscriptRepository(TranscriptRepository):
     def _row_to_transcript(self, row, dialogues: list[Dialogue]) -> Transcript:
         (id_, podcast_id, filename, raw_text, clean_text, mode) = row
         return Transcript(
+            id=id_,
             podcast_id=podcast_id,
             filename=filename,
             raw_text=raw_text,

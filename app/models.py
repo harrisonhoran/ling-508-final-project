@@ -17,6 +17,7 @@ class Transcript:
     mode: ProcessingMode
     dialogues: list[Dialogue] = field(default_factory=list)
     excluded_speaker_turns: list[dict] = field(default_factory=list)
+    id: int = None
 
 @dataclass
 class Podcast:

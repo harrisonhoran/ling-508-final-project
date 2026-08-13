@@ -29,11 +29,6 @@ def test_dialogue():
     assert d.order == 1
 
 
-# - d Validation rules -
-# Needs to be a string
-# Can't have missing fields
-
-
 # --- Transcript tests ---
 def test_transcript():
     t = Transcript(**TRANSCRIPT_PARAMS)
@@ -42,8 +37,3 @@ def test_transcript():
     assert t.raw_text == "brought to you by"
     assert t.clean_text == "state farm"
     assert t.mode == ProcessingMode.CLEAN
-
-
-# - t Validation Rules -
-# Needs to be a string
-# Can't have missing fields
