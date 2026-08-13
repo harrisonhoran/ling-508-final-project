@@ -1,6 +1,5 @@
 import json
 from collections import Counter
-
 from app.models import Dialogue
 
 DEFAULT_SPEAKER_THRESHOLD = 0.03
