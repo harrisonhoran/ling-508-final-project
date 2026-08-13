@@ -1,7 +1,7 @@
 # Podcast Transcript Parser
 
 A Flask + MySQL app that parses raw podcast transcripts into cleaned,
-speaker-labeled dialogue and excludes inferred ad reads.
+speaker-labeled dialogue. The fully documented use case is [here](./documents/Week1_UseCases.pdf).
 
 Podcast data source: [Podscribe](https://podscribe.com/)  
 Podscribe API Documentation: https://docs.api.podscribe.com/#/paths/api-public-episode-transcript/get
@@ -19,7 +19,7 @@ Podscribe API Documentation: https://docs.api.podscribe.com/#/paths/api-public-e
 
 ## Running the app
 From the project root:
-```
+```bash
 docker compose up --build
 ```
 First startup takes ~10-15 seconds while MySQL initializes. Once ready,
@@ -103,7 +103,7 @@ open http://localhost:5000/ in a browser.
 Creates and processes a transcript.
 
 Example:
-```
+```bash
 curl -X POST http://localhost:5000/transcripts \
 -H "Content-Type: application/json" \
 -d @test_payload.json
@@ -114,15 +114,17 @@ Returns 201 with the full transcript (including cleaned dialogue) as JSON.
 Retrieves a previously saved transcript by id.
 
 Example:
-```
+```bash
 curl http://localhost:5000/transcripts/1
 ```
 Returns 200 with the transcript JSON, or 404 if not found.
 
 ## Data persistence
 Transcript data is stored in a Docker volume and persists across restarts.
-To fully reset the database: docker compose down -v
-
+To fully reset the database: 
+```bash
+docker compose down -v
+```
 ## Running tests
 Tests connect to the containerized MySQL database, so the app must be running first:
 ```bash
