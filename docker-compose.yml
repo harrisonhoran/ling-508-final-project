@@ -6,6 +6,7 @@ services:
         condition: service_healthy
     ports:
       - "5000:5000"
+    restart: on-failure
 
   db:
     image: mysql:8.0
