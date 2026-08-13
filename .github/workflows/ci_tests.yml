@@ -30,6 +30,19 @@ jobs:
           exit 1
       - name: Run tests in container
         run: docker compose exec -T app python -m pytest tests
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          echo "=== docker compose ps ==="
+          docker compose ps
+          echo "=== app logs ==="
+          docker compose logs app
+          echo "=== db logs ==="
+          docker compose logs db
+          echo "=== system memory ==="
+          free -h
+          echo "=== dmesg (OOM check) ==="
+          dmesg 2>/dev/null | grep -i "killed process" || echo "no OOM kills found in dmesg"
       - name: Tear down containers
         if: always()
         run: docker compose down
