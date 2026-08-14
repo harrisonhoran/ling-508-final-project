@@ -1,8 +1,3 @@
-"""
-Service layer: coordinates the business logic of the app. Dependent
-on the abstract TranscriptRepository interface, but not on MySQL directly,
-so it can be tested with a fake repo.
-"""
 from app.enums import ProcessingMode
 from app.models import Transcript
 from app.transcript_processor import (
