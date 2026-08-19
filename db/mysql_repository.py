@@ -20,8 +20,14 @@ class MySQLTranscriptRepository(TranscriptRepository):
         self.cursor = self.connection.cursor()
 
     def __del__(self):
-        self.cursor.close()
-        self.connection.close()
+        try:
+            self.cursor.close()
+        except Exception:
+            pass
+        try:
+            self.connection.close()
+        except Exception:
+            pass
 
     # --- private helper methods ------------------------------------------------------
     def _get_or_create_podcast_id(self, podcast_name: str) -> int:
