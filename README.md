@@ -1,4 +1,5 @@
 # Podcast Transcript Parser
+### Final Project - LING 508: Computational Techniques for Linguists
 
 A Flask + MySQL app that parses raw podcast transcripts into cleaned,
 speaker-labeled dialogue. The fully documented use case is [here](./documents/Week1_UseCases.pdf).
